@@ -34,5 +34,5 @@ int main() {
         adj[v].push_back(u);
     }
     if (isBipartite(adj, V)) cout << "Yes Bipartite\n";
-    else cout << "Not Bipartite\n";
+    else cout << "Not Bipartite.\n";
 }

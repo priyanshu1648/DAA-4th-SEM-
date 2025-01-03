@@ -14,7 +14,7 @@ For each test case, output will be "Present" if the key element is found in the 
 Also for each test case output the number of comparisons required to search the key.
 
 Time Complexity: O(log n)
-Space Complexity: O(1)
+Space Complexity: O(1).
 */
 
 #include <iostream>

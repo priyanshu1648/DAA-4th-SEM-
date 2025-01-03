@@ -23,5 +23,5 @@ int main() {
     cin >> src >> dest;
     vector<bool> visited(V, false);
     if (dfs(src, dest, adj, visited)) cout << "Yes Path Exists\n";
-    else cout << "No Such Path Exists\n";
+    else cout << "No Such Path Exists.\n";
 }

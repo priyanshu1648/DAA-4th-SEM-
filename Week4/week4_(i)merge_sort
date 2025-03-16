@@ -1,0 +1,85 @@
+Given an unsorted array of integers, design an algorithm and implement it using a program to sort an array of elements by dividing the array into two subarrays and combining these subarrays after sorting each one of them. Your program should also find number of comparisons and inversions during sorting the array.
+ans:- merge sort
+4,2,1,3,9,8,6,7,5,0(this array will divided into 2 sub array from mid and the process will soo on until only one element left then merge the array in sorted way)
+4,2,1,3,9 || 8,6,7,5,0
+4,2,1||3,9|| 8,6,7||5,0
+4,2 ||1 ||3 ||9 ||8,6 ||7|| 5|| 0
+4|| 2|| 1|| 3 ||9 ||8 ||6 ||7 ||5 ||0
+2,4|| 1,3|| 8,9|| 6,7 || 0,5
+1,2,3,4 || 6,7,8,9 || 0,5
+1,2,3,4,6,7,8,9,|| 0,5
+0,1,2,3,4,5,6,7,8,9(sorted)
+here is code-------------------------------------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<vector>
+using namespace std;
+int compare=0;
+int inversion=0;
+void merge(int arr[],int start,int mid,int end)
+{
+int left=start;
+int right=mid+1;
+vector<int>temp(end-start+1);
+int index=0;
+while(left<=mid&& right<=end)
+{
+    compare++;
+      if(arr[left]<=arr[right])
+      {
+        temp[index]=arr[left];
+        index++;
+        left++;
+
+      }
+      else 
+      {
+        temp [index]=arr[right];
+        index++;
+        right++;
+        inversion=inversion+(mid-left+1);
+      }
+}
+while(left<=mid)
+{
+    temp[index]=arr[left];
+    index++;
+    left++;
+}
+while(right<=end)
+{
+    temp[index]=arr[right];
+    index++;
+    right++;
+}
+index=0;
+while(start<=end)
+{
+    arr[start]=temp[index];
+    start++;
+    index++;
+}
+}
+void mergesort(int arr[],int start,int end)
+{
+    if(start>=end)
+    {
+        return;
+    }
+   int mid=start+(end-start)/2;
+    mergesort(arr,start,mid);
+    mergesort(arr,mid+1,end);
+    merge(arr,start,mid,end);
+}
+int main()
+{
+    int arr[10]={23, 65, 21, 76, 46, 89, 45, 32};
+    mergesort(arr,0,7);
+    cout<<"sorted array is ";
+    for(int i=0;i<8;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+    cout<<"comparsion are"<<compare<<endl;
+    cout<<"inversion are "<<inversion;
+}
